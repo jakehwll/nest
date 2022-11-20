@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ApplicationCommandOptionType, Client, CommandInteraction, EmbedBuilder } from "discord.js";
+import { ApplicationCommandOptionType, ApplicationCommandType, Client, CommandInteraction, EmbedBuilder } from "discord.js";
 import { Command } from "..";
 
 const FIELDS_PYPI = ["license", "docs_url", "home_page", "requires_python", "author"]
@@ -18,7 +18,7 @@ interface NpmReponse {
 export const Pypi: Command = {
   name: "pypi",
   description: "Look up a package on the Python Package Index.",
-  type: 1,
+  type: ApplicationCommandType.ChatInput,
   options: [
     {
       name: 'package_name',
@@ -64,7 +64,7 @@ export const Pypi: Command = {
 export const Npm: Command = {
   name: "npm",
   description: "Look up a package on the official Node.js package manager registry.",
-  type: 1,
+  type: ApplicationCommandType.ChatInput,
   options: [
     {
       name: 'package_name',
