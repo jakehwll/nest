@@ -1,7 +1,7 @@
 import { Command } from "..";
 import { Npm, Pypi } from "./dev";
-import { McSkin } from "./gaming";
+import { McSkin, Osu } from "./gaming";
 
 export const LookupCommands: Command[] = [
-  Pypi, Npm, McSkin
+  Pypi, Npm, McSkin, Osu
 ]

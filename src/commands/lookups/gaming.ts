@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ApplicationCommandOptionType, ApplicationCommandType, Client, CommandInteraction } from "discord.js"
+import { ApplicationCommandOptionType, ApplicationCommandType, Client, CommandInteraction, EmbedBuilder } from "discord.js"
 import { Command } from ".."
 
 const URL_MCUUID_API = "https://api.mojang.com/users/profiles/minecraft/{user}"
@@ -47,6 +47,68 @@ export const McSkin: Command = {
 
       await interaction.reply({
         content: file
+      })
+    } catch (e) {
+      console.log(e)
+      return await interaction.reply(`Couldn't find user \`${username}\``)
+    }
+  }
+}
+
+export const Osu: Command = {
+  name: "osu",
+  description: "Display's information about a given OSU user.",
+  type: ApplicationCommandType.ChatInput,
+  options: [
+    {
+      name: 'username',
+      description: 'The players username to lookup.',
+      required: true,
+      type: ApplicationCommandOptionType.String
+    }
+  ],
+  run: async (_client: Client, interaction: CommandInteraction) => {
+    const username = interaction.options.get('username')?.value
+    
+    try {
+      const osu_api = `https://osu.ppy.sh/api/get_user`
+      const osu_query = {"k": process.env.OSU_TOKEN, "u": username}
+      
+      const embed_keys = {
+        "Play Count": "playcount",
+        "Country": "country",
+        "Level": "level",
+        "Ranked Score": "ranked_score",
+        "Total Score": "total_score",
+        "Accuracy": "accuracy",
+        "SS Ranking": "count_rank_ss",
+        "S Ranking": "count_rank_s",
+        "A Ranking": "count_rank_a",
+        "300s": "count300",
+        "100s": "count100",
+        "50s": "count50",
+      }
+
+      await axios.get(osu_api, {
+        params: osu_query
+      }).then(async (response) => {
+        const { username, userid } = response.data
+
+        const embed = new EmbedBuilder()
+          .setTitle(`${username}`)
+          .setDescription(`\`${userid}\``)
+          .setURL(`https://osu.ppy.sh/u/${userid}`)
+          .setThumbnail("https://a.ppy.sh/${userid}")
+          .addFields(
+            Object.entries(embed_keys).map(([key, value]) => ({
+              name: key,
+              value: response.data.get(value)
+            }))
+          )
+
+        await interaction.reply({
+          embeds: [ embed ]
+        })
       })
     } catch (e) {
       console.log(e)
