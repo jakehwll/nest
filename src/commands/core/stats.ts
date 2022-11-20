@@ -1,10 +1,10 @@
-import { Client, CommandInteraction } from "discord.js"
+import { ApplicationCommandType, Client, CommandInteraction } from "discord.js"
 import { Command } from ".."
 
 export const Stats: Command = {
   name: "stats",
   description: "Display statistics about the bot.",
-  type: 1,
+  type: ApplicationCommandType.ChatInput,
   run: async (client: Client, interaction: CommandInteraction) => {
     const { guilds, channels, users } = {
       guilds: client.guilds.cache.size,
@@ -21,7 +21,7 @@ export const Stats: Command = {
 export const Ping: Command = {
   name: "ping",
   description: "Returns the bot's response time.",
-  type: 1,
+  type: ApplicationCommandType.ChatInput,
   run: async (_client: Client, interaction: CommandInteraction) => {
     interaction.reply('Pong!')
   }

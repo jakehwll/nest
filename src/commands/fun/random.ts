@@ -1,10 +1,10 @@
-import { ApplicationCommandOptionType, Client, CommandInteraction } from "discord.js";
+import { ApplicationCommandOptionType, ApplicationCommandType, Client, CommandInteraction } from "discord.js";
 import { Command } from "..";
 
 export const Coin: Command = {
   name: "coin",
   description: "Flip a coin.",
-  type: 1,
+  type: ApplicationCommandType.ChatInput,
   run: async (_client: Client, interaction: CommandInteraction) => {
     const choices = ['heads', 'tails']
     var index = Math.floor(Math.random() * choices.length)
@@ -15,7 +15,7 @@ export const Coin: Command = {
 export const Dice: Command = {
   name: "dice",
   description: "Roll a die with input in the AdX notation.",
-  type: 1,
+  type: ApplicationCommandType.ChatInput,
   options: [
     {
       name: 'times',
@@ -41,7 +41,7 @@ export const Dice: Command = {
 export const Rate: Command = {
   name: "rate",
   description: "Gives something a rating.",
-  type: 1,
+  type: ApplicationCommandType.ChatInput,
   options: [
     {
       name: 'object',
@@ -61,7 +61,7 @@ export const Rate: Command = {
 export const Eightball: Command = {
   name: "eightball",
   description: "Asks the magic 8ball a question.",
-  type: 1,
+  type: ApplicationCommandType.ChatInput,
   run: async (_client: Client, interaction: CommandInteraction) => {
     const _options = [
       'That it is certain.',
@@ -93,7 +93,7 @@ export const Eightball: Command = {
 export const Aaa: Command = {
   name: "aaa",
   description: "Aaa.",
-  type: 1,
+  type: ApplicationCommandType.ChatInput,
   run: async (_client: Client, interaction: CommandInteraction) => {
     const times = Math.floor(Math.random() * (200 - 1) + 1)
     await interaction.reply(`${'a'.repeat(times)}`)

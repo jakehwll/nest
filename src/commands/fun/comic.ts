@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ApplicationCommandOptionType, Client, CommandInteraction, EmbedBuilder } from "discord.js";
+import { ApplicationCommandOptionType, ApplicationCommandType, Client, CommandInteraction, EmbedBuilder } from "discord.js";
 import { Command } from "..";
 
 interface XkcdResponse {
@@ -19,7 +19,7 @@ interface XkcdResponse {
 export const Xkcd: Command = {
   name: "xkcd",
   description: "Display a (or the latest) comic from xkcd.",
-  type: 1,
+  type: ApplicationCommandType.ChatInput,
   options: [
     {
       name: 'number',

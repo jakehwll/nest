@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Client, CommandInteraction, EmbedBuilder } from "discord.js";
+import { ApplicationCommandType, Client, CommandInteraction, EmbedBuilder } from "discord.js";
 import { Command } from "..";
 
 interface FakeGitResponse {
@@ -11,7 +11,7 @@ interface FakeGitResponse {
 export const FakeGit: Command = {
   name: "fakegit",
   description: "Generate a fake commit message that looks like a Discord webhook.",
-  type: 1,
+  type: ApplicationCommandType.ChatInput,
   run: async (client: Client, interaction: CommandInteraction) => {
     let url = 'http://whatthecommit.com/index.json'
 

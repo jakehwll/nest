@@ -1,10 +1,10 @@
-import { ApplicationCommandOptionType, Client, CommandInteraction } from "discord.js";
+import { ApplicationCommandOptionType, ApplicationCommandType, Client, CommandInteraction } from "discord.js";
 import { Command } from "..";
 
 export const BigText: Command = {
   name: "bigtext",
   description: "Convert text into huge emoji.",
-  type: 1,
+  type: ApplicationCommandType.ChatInput,
   options: [
     {
       name: 'content',
@@ -32,7 +32,7 @@ export const BigText: Command = {
 export const XD: Command = {
   name: "xd",
   description: "Make an XD out of the word given.",
-  type: 1,
+  type: ApplicationCommandType.ChatInput,
   options: [
     {
       name: 'content',
@@ -62,7 +62,7 @@ export const XD: Command = {
 export const Clapify: Command = {
   name: "clapify",
   description: "Add clap emojis after each word.",
-  type: 1,
+  type: ApplicationCommandType.ChatInput,
   options: [
     {
       name: 'content',
@@ -89,7 +89,7 @@ export const Clapify: Command = {
 export const Tobleflep: Command = {
   name: "tobleflep",
   description: "Tableflip, but random.",
-  type: 1,
+  type: ApplicationCommandType.ChatInput,
   run: async (_client: Client, interaction: CommandInteraction) => {
     const tableflip = '(╯°□°）╯︵ ┻━┻'
     const reply = (tableflip as string)

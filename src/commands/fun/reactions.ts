@@ -1,13 +1,14 @@
 import axios from "axios"
-import { Client, CommandInteraction, EmbedBuilder } from "discord.js"
+import { ApplicationCommandType, Client, CommandInteraction, EmbedBuilder } from "discord.js"
+import { Command } from ".."
 
 const WEEBSH_API = 'https://api.weeb.sh/images/random'
 
-const generate_command = (key: string) => {
+const generate_command = (key: string): Command => {
   return {
     name: key,
     description: `Returns a ${key} image.`,
-    type: 1,
+    type: ApplicationCommandType.ChatInput,
     run: async (_client: Client, interaction: CommandInteraction) => {
       try {
         await axios
