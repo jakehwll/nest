@@ -2,10 +2,6 @@ import axios from "axios"
 import { ApplicationCommandOptionType, ApplicationCommandType, Client, CommandInteraction, EmbedBuilder } from "discord.js"
 import { Command } from ".."
 
-const URL_MCUUID_API = "https://api.mojang.com/users/profiles/minecraft/{user}"
-const URL_MCSKIN_API = "https://visage.surgeplay.com/{image}/{uuid}.png"
-const URL_OSU_API = "https://osu.ppy.sh/api/get_user"
-
 export const McSkin: Command = {
   name: "mcskin",
   description: "Display a given Minecraft user's skin.",
