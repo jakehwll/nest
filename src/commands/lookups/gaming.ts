@@ -37,8 +37,6 @@ export const McSkin: Command = {
     const username = interaction.options.get('username')?.value
     const image_type = interaction.options.get('type') ?? "face"
     
-    let uuid = ""
-    
     try {
       const uuid_mojang =
         await axios.get(`https://api.mojang.com/users/profiles/minecraft/${username}`)
